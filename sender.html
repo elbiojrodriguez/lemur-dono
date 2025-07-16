@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head><title>Sender</title></head>
+<body>
+  <video id="localVideo" autoplay muted></video>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const socket = io();
+    const video = document.getElementById('localVideo');
+
+    navigator.mediaDevices.getUserMedia({ video: true, audio: false })
+      .then(stream => {
+        video.srcObject = stream;
+        const canvas = document.createElement('canvas');
+        const context = canvas.getContext('2d');
+
+        setInterval(() => {
+          canvas.width = video.videoWidth;
+          canvas.height = video.videoHeight;
+          context.drawImage(video, 0, 0, canvas.width, canvas.height);
+          socket.emit('video-frame', canvas.toDataURL('image/webp'));
+        }, 100);
+      });
+  </script>
+</body>
+</html>
