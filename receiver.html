@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html>
-<head><title>Receiver</title></head>
-<body>
-  <img id="remoteStream" style="width:100%;"/>
+<head>
+  <title>Receiver</title>
+</head>
+<body style="text-align:center; background:#121212; color:white;">
+  <h1>🖥️ Recebendo vídeo do celular</h1>
+  <img id="remoteStream" style="max-width:90%; border:2px solid #fff;" />
 
   <script src="/socket.io/socket.io.js"></script>
   <script>
     const socket = io();
     const img = document.getElementById('remoteStream');
 
-    socket.on('video-frame', data => {
+    socket.on('frame', data => {
       img.src = data;
     });
   </script>
