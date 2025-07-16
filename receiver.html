@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head><title>Receiver</title></head>
+<body>
+  <img id="remoteStream" style="width:100%;"/>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const socket = io();
+    const img = document.getElementById('remoteStream');
+
+    socket.on('video-frame', data => {
+      img.src = data;
+    });
+  </script>
+</body>
+</html>
