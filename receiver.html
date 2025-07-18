@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Receiver</title>
+  <title>Receiver Alinhado</title>
 </head>
 <body style="text-align:center; background:#121212; color:white;">
-  <h1>🖥️ Recebendo vídeo do celular</h1>
+  <h1>🖥️ Recebendo vídeo do sender (evento video-frame)</h1>
   <img id="remoteStream" style="max-width:90%; border:2px solid #fff;" />
 
   <script src="/socket.io/socket.io.js"></script>
   <script>
-    const socket = io();
+    const socket = io(); // conecta com lemur-dono
     const img = document.getElementById('remoteStream');
 
-    socket.on('frame', data => {
+    socket.on('video-frame', data => {
       img.src = data;
     });
   </script>
