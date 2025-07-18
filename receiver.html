@@ -12,7 +12,7 @@
     const socket = io();
     const img = document.getElementById('remoteStream');
 
-    socket.on('frame', data => {
+    socket.on('video-frame', data => {
       img.src = data;
     });
   </script>
