@@ -11,6 +11,8 @@ app.use(express.static(__dirname));
 
 // Escutar e repassar quadros de vídeo
 io.on('connection', socket => {
+  console.log('Novo usuário conectado!'); // 🟢 Log extra para rastrear conexões
+  
   socket.on('video-frame', data => {
     socket.broadcast.emit('video-frame', data);
   });
